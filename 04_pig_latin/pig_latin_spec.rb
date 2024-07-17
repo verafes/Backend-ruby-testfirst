@@ -65,8 +65,41 @@ describe "#translate" do
     expect(s).to eq("ethay ickquay ownbray oxfay")
   end
 
+  it "translates two words beginning with a single consonant" do
+      s = translate("hello world")
+      expect(s).to eq("ellohay orldway")
+  end
+
+  it "translates many words and punctuation" do
+    s = translate("the quick fox, yet the brown fox!")
+    expect(s).to eq("ethay ickquay oxfay, etyay ethay ownbray oxfay!")
+  end
+
   # Test-driving bonus:
   # * write a test asserting that capitalized words are still capitalized (but with a different initial capital letter, of course)
-  # * retain the punctuation from the original phrase
 
+  it "retain capitalization for a single capitalized word" do
+    s = translate("Apple")
+    expect(s).to eq("Appleay")
+  end
+
+  it "retain capitalization for multiple capitalized words including 'little words'" do
+    s = translate("A Green Apple")
+    expect(s).to eq("Aay Eengray Appleay")
+  end
+
+  # * retain the punctuation from the original phrase
+    it "retains punctuation at the end of a word" do
+      s = translate("hello!")
+      expect(s).to eq("ellohay!")
+    end
+
+    it "retain capitalization and punctuation for multiple capitalized words" do
+        s = translate("The Quick Fox, not the Queen Guest!")
+        expect(s).to eq("Ethay Ickquay Oxfay, otnay ethay Eenquay Uestgay!")
+    end
+
+  it "retains capitalization and punctuation in the middle and at the end of phrase" do
+    expect(translate("Hello, world!")).to eq("Ellohay, orldway!")
+  end
 end
